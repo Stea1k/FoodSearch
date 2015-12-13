@@ -1,0 +1,14 @@
+GUI is functional
+    [x]- search works properly, though questionable
+    [x]- Query results panel need to be expanded (width is too tight)
+
+Database appears fully functional
+    [x]- redesign the code structure - currently unicode, needs to be text
+    [x]- option menus are not operating properly
+    - need to implement 'save function'
+
+Need to connect front to back.
+    [x]- Dynamic SQL queries
+      [x] - food group and name successful, but not yet with nutrients
+    [x]- 'Search' button needs to interact directly with listbox, entry, and optionmenu
+    [x]- Sort by nutrients, how to use more than 1?
