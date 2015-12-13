@@ -21,7 +21,13 @@ class ROW(Tk):
         # stored nutrient requests
         self.nutSpecList = []
         self.FGlst = FGlst
-        self.allNutsFromDB = getNutList()
+        try:
+            self.allNutsFromDB = getNutList()
+        except:
+            self.updateDB()
+        finally:
+            self.allNutsFromDB = getNutList()
+        
         # stored data on the table for adding and removing temporary frames.
         self.Rows = 1
         self.range = 0
