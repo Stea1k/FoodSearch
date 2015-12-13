@@ -13,7 +13,6 @@ import foodObject
 from notification import *
 import switchKeys as keys
 
-print('success')
 # root = Tk()
 
 class ROW(Tk):
@@ -33,7 +32,6 @@ class ROW(Tk):
         self.var2 = StringVar(parent)
         self.labels = []
         self.YAArray = []
-        self.foodReportArray = []
 
         # top frame
         self.topFrame = Frame(pady=2)
