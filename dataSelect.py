@@ -169,7 +169,11 @@ def nameCheck(name):
 def checkRun(strArray):
     newArray = strArray
 
-    delArray = [i for i in newArray if (i.nutSelect.get()!="Choose")|(i.comparisonOption.get()!="range")]
+    delArray = [i for i in newArray if (i.nutSelect.get()!="Choose") or (i.comparisonOption.get()!="Range")]
+    # delArray = []
+    # for i in newArray:
+    #     if (i.nutSelect.get()!="Choose")|(i.comparisonOption.get()!="Range"):
+    #         delArray.append(i)
 
     return delArray
 
@@ -248,19 +252,22 @@ def addFoodNameNuts(category, name, nutArray):
     newStr = ""
 
     checkArray = checkRun(nutArray)
-
+    for i in checkArray:
+        print(i)
     addStr = catAndName(category, name)
+    try:
+        if (addStr != "")&(len(checkArray)>0):
+            addStr += appendRanges(checkArray)
+        elif (addStr=="")&(len(checkArray)>0):
+            firstInLine = checkArray.pop(0)
+            # addStr += setNutRangeSQL(firstInLine)
+            addStr += compareOptions(firstInLine.comparisonOption.get(), firstInLine.nutSelect.get(), firstInLine.nutRangeValue.get())
+            addStr += appendRanges(checkArray)
+        print(newStr)
 
-    if (addStr != "")&(len(checkArray)>0):
-        addStr += appendRanges(checkArray)
-    elif (addStr=="")&(len(checkArray)>0):
-        firstInLine = checkArray.pop(0)
-        # addStr += setNutRangeSQL(firstInLine)
-        addStr += compareOptions(firstInLine.comparisonOption.get(), firstInLine.nutSelect.get(), firstInLine.nutRangeValue.get())
-        addStr += appendRanges(checkArray)
-    print(newStr)
-
-    newStr += addStr
+        newStr += addStr
+    except:
+        newStr=""
     return newStr
 
 # overarching search query.
