@@ -18,6 +18,7 @@ import switchKeys as keys
 class ROW(Tk):
     def __init__(self, parent):
         Tk.__init__(self,parent)
+        self.wm_title("Food Search")
         # stored nutrient requests
         self.nutSpecList = []
         self.FGlst = FGlst
@@ -27,7 +28,7 @@ class ROW(Tk):
             self.updateDB()
         finally:
             self.allNutsFromDB = getNutList()
-        
+
         # stored data on the table for adding and removing temporary frames.
         self.Rows = 1
         self.range = 0
@@ -53,7 +54,7 @@ class ROW(Tk):
         self.nameLabel.grid(row=0, column=1, sticky = E+W)
 
         # Name text entry
-        self.entry = Entry(self.topFrame, textvariable=self.var2)
+        self.entry = Entry(self.topFrame, textvariable=self.var2,bg="white")
         self.entry.insert(END,'Enter a Food')
         self.entry.grid(row=0, column=2, sticky = W+E)
 
@@ -112,10 +113,10 @@ class ROW(Tk):
         self.outputLabel.grid(pady = 5,row=0,column=0)
 
         # listbox within bottom frame
-        self.listed = Listbox(self.outputFrame)
+        self.listed = Listbox(self.outputFrame,bg="white")
         self.listed.insert(END, 'start')
         self.listed.grid(padx=2,pady=2,row=1,column=0, sticky=W+E+N+S)
-        self.listed.config(height = 10, width = 90)
+        self.listed.config(height = 30, width = 90)
 
         # FooterFrame
         # self.footerFrame = Frame(self.outputFrame)
@@ -141,17 +142,20 @@ class ROW(Tk):
         # for i in self.YAArray:
         #     print(i.nutSelect.get())
         searchResultList = getBasicSearchData(self.var1.get(), self.var2.get(), self.YAArray)
-        if len(searchResultList)<1:
-            keys.notificationSwitch = 'No Data'
-            print(keys.notificationSwitch)
-            self.notifyUser()
+        try:
+            if len(searchResultList)<1:
+                keys.notificationSwitch = 'No Data'
+                print(keys.notificationSwitch)
+                self.notifyUser()
 
-        else:
-            for i in searchResultList:
-                insertion = ''
-                for j in i:
-                    insertion += str(j)+' | '
-                self.listed.insert(END,insertion)
+            else:
+                for i in searchResultList:
+                    insertion = ''
+                    for j in i:
+                        insertion += str(j)+' | '
+                    self.listed.insert(END,insertion)
+        except:
+            self.listed.insert(END,"Revise your search.")
 
         # self.nutFramesTesting()
 
@@ -190,13 +194,13 @@ class ROW(Tk):
         keys.notificationSwitch = 'finished'
         self.notifyUser()
 
-    def notifyUser(self):
-        t = Toplevel()
-        t.wm_title('Notice')
-        if notificationSwitch == 'No Data':
-            noDataWindow(t)
-        elif notificationSwitch == 'finished':
-            finishedWindow(t)
+    # def notifyUser(self):
+    #     t = Toplevel()
+    #     t.wm_title('Notice')
+        # if notificationSwitch == 'No Data':
+        #     noDataWindow(t)
+        # elif notificationSwitch == 'finished':
+        #     finishedWindow(t)
 
 if __name__ == "__main__":
     window = ROW(None)
