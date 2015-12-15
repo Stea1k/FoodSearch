@@ -189,10 +189,12 @@ class ROW(Tk):
             print(i.nutSelect.get())
 
     def updateDB(self):
+        self.listed.insert(END,"Please Hold")
         DBConstructor()
         populateTables()
         keys.notificationSwitch = 'finished'
-        self.notifyUser()
+        self.listed.insert(END,"Update Complete")
+        # self.notifyUser()
 
     # def notifyUser(self):
     #     t = Toplevel()

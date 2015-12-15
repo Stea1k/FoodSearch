@@ -12,3 +12,17 @@ Need to connect front to back.
       [x] - food group and name successful, but not yet with nutrients
     [x]- 'Search' button needs to interact directly with listbox, entry, and optionmenu
     [x]- Sort by nutrients, how to use more than 1?
+
+get a list of names and id numbers based on criteria
+    for each name/id, create an array
+
+        search the db for nutrient values and units where their food id is the searched id.
+
+            SELECT NUTNAME,AMT_PER_SERVING,UNIT
+            FROM NUTRIENTS AS N
+            JOIN FOODS AS F ON N.NDBNO = F.NDBNO
+            WHERE NDBNO LIKE 'NDBNO'
+
+            for each tuple returned, string all together and append to array using the ndbno
+
+    print out each array on the list box.

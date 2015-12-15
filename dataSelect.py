@@ -263,7 +263,7 @@ def addFoodNameNuts(category, name, nutArray):
             # addStr += setNutRangeSQL(firstInLine)
             addStr += compareOptions(firstInLine.comparisonOption.get(), firstInLine.nutSelect.get(), firstInLine.nutRangeValue.get())
             addStr += appendRanges(checkArray)
-        print(newStr)
+        # print(newStr)
 
         newStr += addStr
     except:
@@ -290,14 +290,14 @@ def getBasicSearchData(category, name, nutArray):
                 initial += checkAllForSQL(category, name, nutArray)
                 # print(initial+'\n')
                 initial += addFoodNameNuts(category, name, nutArray)
-                print(initial+'\n')
+                # print(initial+'\n')
                 print("'Where' and food nutrient stuff added\n")
             except:
                 print(Exception)
                 initial += ""
 
             initial += " ORDER BY FG.GROUPID"
-            print(initial+'\n')
+            # print(initial+'\n')
 
             searchResult = cur.execute(initial)
             searchResultList = [[i[0],i[1],i[2],i[3],i[4],i[5]] for i in searchResult.fetchall()]

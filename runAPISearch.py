@@ -21,15 +21,20 @@ def runQ(url):
 def getFoodGroups():
     # pull API database data for a list of food groups
     url = url_base+ltOption+formatJSON+'&lt=g&sort=n&api_key='+key
+    # print(url)
     loaded = runQ(url)
 
     # use said data to create an array of Food Group objects
     listOfGroups = []
     groups = loaded['list']['item']
+    # print('ran once')
     for i in groups:
+        # print(i['name'],i['id'])
         newFoodGroup = FoodGroup(int(i['id']), i['name'])
         listOfGroups.append(newFoodGroup)
     return listOfGroups
+
+# getFoodGroups()
 
 def getNutrientsFromFood(url):
     nutrientSearchURL = url

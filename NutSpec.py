@@ -25,7 +25,7 @@ class nutrientSpec:
         self.comparison.grid(row=0, column=1, sticky = E+W)
 
         # value text box
-        self.nutValue = Entry(root, width = 5, textvariable = self.nutRangeValue)
+        self.nutValue = Entry(root, width = 5, textvariable = self.nutRangeValue,bg="white")
         self.nutValue.grid(row=0,column=2, sticky = E+W)
 
         # unit options menu
